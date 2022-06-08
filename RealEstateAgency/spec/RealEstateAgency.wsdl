@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/RealEstateAgency/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RealEstateAgency" targetNamespace="http://www.example.org/RealEstateAgency/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/RealEstateAgency/">
+      <xsd:element name="getUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="tns:userType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="userType">
+      	<xsd:sequence>
+      		<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		<xsd:element name="username" type="xsd:string"></xsd:element>
+      		<xsd:element name="password" type="xsd:string"></xsd:element>
+      		<xsd:element name="email" type="xsd:string"></xsd:element>
+      		<xsd:element name="name" type="xsd:string"></xsd:element>
+      		<xsd:element name="rating" type="xsd:double"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getUserByID">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserByIDResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:userType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:userType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="validateUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="username" type="xsd:string"></xsd:element>
+      			<xsd:element name="password" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="validateUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:userType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllRealEstates">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAllRealEstatesResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:realEstateType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="realEstateType">
+      	<xsd:sequence>
+      		<xsd:element name="realEstateID" type="xsd:int"></xsd:element>
+      		<xsd:element name="description" type="xsd:string"></xsd:element>
+      		<xsd:element name="name" type="xsd:string"></xsd:element>
+      		<xsd:element name="price" type="xsd:double"></xsd:element>
+      		<xsd:element name="sold" type="xsd:boolean"></xsd:element>
+      		<xsd:element name="bankAccount" type="xsd:int"></xsd:element>
+      		<xsd:element name="picture" type="xsd:byte"
+      			maxOccurs="unbounded" minOccurs="0">
+      		</xsd:element>
+      		<xsd:element name="buyer" type="xsd:int"></xsd:element>
+      		<xsd:element name="seller" type="xsd:int"></xsd:element>
+      		<xsd:element name="address" type="xsd:string"></xsd:element>
+      		<xsd:element name="city" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getRealEstatesSold">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRealEstatesSoldResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:realEstateType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRealEstatesBought">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getRealEstatesBoughtResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:realEstateType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="buyRealEstate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="buyerID" type="xsd:int"></xsd:element>
+      			<xsd:element name="realEstateID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="buyRealEstateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addComment">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:commentType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addCommentResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="commentType">
+      	<xsd:sequence>
+      		<xsd:element name="posterID" type="xsd:int"></xsd:element>
+      		<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		<xsd:element name="rating" type="xsd:int"></xsd:element>
+      		<xsd:element name="text" type="xsd:string"></xsd:element>
+      		<xsd:element name="commentID" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getCommentsOn">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCommentsOnResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:commentType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCommentsFrom">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCommentsFromResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:commentType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteComment">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="commentID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteCommentResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteRealEstate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="realEstateID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="deleteRealEstateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRealEstateByName">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRealEstateByNameResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:realEstateType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRealEstateByCity">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="xsd:string"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="searchRealEstateByCityResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:realEstateType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addRealEstate">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:realEstateType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addRealEstateResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getUserRequest">
+    <wsdl:part element="tns:getUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part element="tns:getUserResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getUserByIDRequest">
+  	<wsdl:part name="parameters" element="tns:getUserByID"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByIDResponse">
+  	<wsdl:part name="parameters" element="tns:getUserByIDResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserRequest">
+  	<wsdl:part name="parameters" element="tns:addUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserResponse">
+  	<wsdl:part name="parameters" element="tns:addUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateUserRequest">
+  	<wsdl:part name="parameters" element="tns:validateUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="validateUserResponse">
+  	<wsdl:part name="parameters" element="tns:validateUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRealEstatesRequest">
+  	<wsdl:part name="parameters" element="tns:getAllRealEstates"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllRealEstatesResponse">
+  	<wsdl:part name="parameters" element="tns:getAllRealEstatesResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRealEstatesSoldRequest">
+  	<wsdl:part name="parameters" element="tns:getRealEstatesSold"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRealEstatesSoldResponse">
+  	<wsdl:part name="parameters" element="tns:getRealEstatesSoldResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRealEstatesBoughtRequest">
+  	<wsdl:part name="parameters" element="tns:getRealEstatesBought"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRealEstatesBoughtResponse">
+  	<wsdl:part name="parameters" element="tns:getRealEstatesBoughtResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buyRealEstateRequest">
+  	<wsdl:part name="parameters" element="tns:buyRealEstate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="buyRealEstateResponse">
+  	<wsdl:part name="parameters" element="tns:buyRealEstateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCommentRequest">
+  	<wsdl:part name="parameters" element="tns:addComment"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCommentResponse">
+  	<wsdl:part name="parameters" element="tns:addCommentResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCommentsOnRequest">
+  	<wsdl:part name="parameters" element="tns:getCommentsOn"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCommentsOnResponse">
+  	<wsdl:part name="parameters" element="tns:getCommentsOnResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCommentsFromRequest">
+  	<wsdl:part name="parameters" element="tns:getCommentsFrom"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCommentsFromResponse">
+  	<wsdl:part name="parameters" element="tns:getCommentsFromResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCommentRequest">
+  	<wsdl:part name="parameters" element="tns:deleteComment"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteCommentResponse">
+  	<wsdl:part name="parameters" element="tns:deleteCommentResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteRealEstateRequest">
+  	<wsdl:part name="parameters" element="tns:deleteRealEstate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteRealEstateResponse">
+  	<wsdl:part name="parameters" element="tns:deleteRealEstateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchRealEstateByNameRequest">
+  	<wsdl:part name="parameters" element="tns:searchRealEstateByName"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchRealEstateByNameResponse">
+  	<wsdl:part name="parameters" element="tns:searchRealEstateByNameResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchRealEstateByCityRequest">
+  	<wsdl:part name="parameters" element="tns:searchRealEstateByCity"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchRealEstateByCityResponse">
+  	<wsdl:part name="parameters" element="tns:searchRealEstateByCityResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRealEstateRequest">
+  	<wsdl:part name="parameters" element="tns:addRealEstate"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRealEstateResponse">
+  	<wsdl:part name="parameters" element="tns:addRealEstateResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RealEstateAgency">
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUserRequest"/>
+      <wsdl:output message="tns:getUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByID">
+    	<wsdl:input message="tns:getUserByIDRequest"></wsdl:input>
+    	<wsdl:output message="tns:getUserByIDResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addUser">
+    	<wsdl:input message="tns:addUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:addUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+    	<wsdl:input message="tns:validateUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:validateUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllRealEstates">
+    	<wsdl:input message="tns:getAllRealEstatesRequest"></wsdl:input>
+    	<wsdl:output message="tns:getAllRealEstatesResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRealEstatesSold">
+    	<wsdl:input message="tns:getRealEstatesSoldRequest"></wsdl:input>
+    	<wsdl:output message="tns:getRealEstatesSoldResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRealEstatesBought">
+    	<wsdl:input message="tns:getRealEstatesBoughtRequest"></wsdl:input>
+    	<wsdl:output message="tns:getRealEstatesBoughtResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buyRealEstate">
+    	<wsdl:input message="tns:buyRealEstateRequest"></wsdl:input>
+    	<wsdl:output message="tns:buyRealEstateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addComment">
+    	<wsdl:input message="tns:addCommentRequest"></wsdl:input>
+    	<wsdl:output message="tns:addCommentResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCommentsOn">
+    	<wsdl:input message="tns:getCommentsOnRequest"></wsdl:input>
+    	<wsdl:output message="tns:getCommentsOnResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCommentsFrom">
+    	<wsdl:input message="tns:getCommentsFromRequest"></wsdl:input>
+    	<wsdl:output message="tns:getCommentsFromResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteComment">
+    	<wsdl:input message="tns:deleteCommentRequest"></wsdl:input>
+    	<wsdl:output message="tns:deleteCommentResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRealEstate">
+    	<wsdl:input message="tns:deleteRealEstateRequest"></wsdl:input>
+    	<wsdl:output message="tns:deleteRealEstateResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRealEstateByName">
+    	<wsdl:input message="tns:searchRealEstateByNameRequest"></wsdl:input>
+    	<wsdl:output message="tns:searchRealEstateByNameResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchRealEstateByCity">
+    	<wsdl:input message="tns:searchRealEstateByCityRequest"></wsdl:input>
+    	<wsdl:output message="tns:searchRealEstateByCityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addRealEstate">
+    	<wsdl:input message="tns:addRealEstateRequest"></wsdl:input>
+    	<wsdl:output message="tns:addRealEstateResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RealEstateAgencySOAP" type="tns:RealEstateAgency">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://www.example.org/RealEstateAgency/getUser"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RealEstateAgency">
+    <wsdl:port binding="tns:RealEstateAgencySOAP" name="RealEstateAgencySOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

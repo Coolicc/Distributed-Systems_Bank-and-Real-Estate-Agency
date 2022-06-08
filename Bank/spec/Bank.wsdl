@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/Bank/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Bank" targetNamespace="http://www.example.org/Bank/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/Bank/">
+      <xsd:element name="getUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="tns:BankUserType"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="BankUserType">
+      	<xsd:sequence>
+      		<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		<xsd:element name="username" type="xsd:string"></xsd:element>
+      		<xsd:element name="dateOfBirth" type="xsd:date"></xsd:element>
+      		<xsd:element name="address" type="xsd:string"></xsd:element>
+      		<xsd:element name="email" type="xsd:string"></xsd:element>
+      		<xsd:element name="name" type="xsd:string"></xsd:element>
+      		<xsd:element name="password" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="addUser">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:BankUserType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addUserResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addAccount">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addAccountResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="evaluateCreditCapability">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="evaluateCreditCapabilityResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addCredit">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      			<xsd:element name="amount" type="xsd:double"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="addCreditResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transferMoney">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="in" type="tns:transactionType"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transferMoneyResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="xsd:boolean"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="transactionType">
+      	<xsd:sequence>
+      		<xsd:element name="amount" type="xsd:double"></xsd:element>
+      		<xsd:element name="comment" type="xsd:string"></xsd:element>
+      		<xsd:element name="fromAccount" type="xsd:int"></xsd:element>
+      		<xsd:element name="toAccount" type="xsd:int"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getAccounts">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="userID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAccountsResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:AccountType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="AccountType">
+      	<xsd:sequence>
+      		<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      		<xsd:element name="balance" type="xsd:double"></xsd:element>
+      		<xsd:element name="owner" type="xsd:int"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="getTransactionsFrom">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTransactionsFromResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:transactionType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTransactionsTo">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getTransactionsToResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:transactionType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCredits">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="accountID" type="xsd:int"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getCreditsResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="out" type="tns:creditType" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    
+      <xsd:complexType name="creditType">
+      	<xsd:sequence>
+      		<xsd:element name="creditID" type="xsd:int"></xsd:element>
+      		<xsd:element name="amount" type="xsd:double"></xsd:element>
+      		<xsd:element name="amountPaidOff" type="xsd:double"></xsd:element>
+      		<xsd:element name="account" type="xsd:int"></xsd:element>
+      		<xsd:element name="paidOff" type="xsd:boolean"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="addCreditFault">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="addCreditFault"
+      				type="xsd:string">
+      			</xsd:element>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getUserRequest">
+    <wsdl:part element="tns:getUser" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part element="tns:getUserResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="addUserRequest">
+  	<wsdl:part name="parameters" element="tns:addUser"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addUserResponse">
+  	<wsdl:part name="parameters" element="tns:addUserResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAccountRequest">
+  	<wsdl:part name="parameters" element="tns:addAccount"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAccountResponse">
+  	<wsdl:part name="parameters" element="tns:addAccountResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evaluateCreditCapabilityRequest">
+  	<wsdl:part name="parameters" element="tns:evaluateCreditCapability"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="evaluateCreditCapabilityResponse">
+  	<wsdl:part name="parameters" element="tns:evaluateCreditCapabilityResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCreditRequest">
+  	<wsdl:part name="parameters" element="tns:addCredit"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCreditResponse">
+  	<wsdl:part name="parameters" element="tns:addCreditResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferMoneyRequest">
+  	<wsdl:part name="parameters" element="tns:transferMoney"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="transferMoneyResponse">
+  	<wsdl:part name="parameters" element="tns:transferMoneyResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountsRequest">
+  	<wsdl:part name="parameters" element="tns:getAccounts"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAccountsResponse">
+  	<wsdl:part name="parameters" element="tns:getAccountsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionsFromRequest">
+  	<wsdl:part name="parameters" element="tns:getTransactionsFrom"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionsFromResponse">
+  	<wsdl:part name="parameters" element="tns:getTransactionsFromResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionsToRequest">
+  	<wsdl:part name="parameters" element="tns:getTransactionsTo"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransactionsToResponse">
+  	<wsdl:part name="parameters" element="tns:getTransactionsToResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCreditsRequest">
+  	<wsdl:part name="parameters" element="tns:getCredits"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCreditsResponse">
+  	<wsdl:part name="parameters" element="tns:getCreditsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addCreditFault">
+  	<wsdl:part name="parameters" element="tns:addCreditFault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Bank">
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUserRequest"/>
+      <wsdl:output message="tns:getUserResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="addUser">
+    	<wsdl:input message="tns:addUserRequest"></wsdl:input>
+    	<wsdl:output message="tns:addUserResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAccount">
+    	<wsdl:input message="tns:addAccountRequest"></wsdl:input>
+    	<wsdl:output message="tns:addAccountResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="evaluateCreditCapability">
+    	<wsdl:input message="tns:evaluateCreditCapabilityRequest"></wsdl:input>
+    	<wsdl:output message="tns:evaluateCreditCapabilityResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addCredit">
+    	<wsdl:input message="tns:addCreditRequest"></wsdl:input>
+    	<wsdl:output message="tns:addCreditResponse"></wsdl:output>
+            <wsdl:fault name="fault" message="tns:addCreditFault"></wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="transferMoney">
+    	<wsdl:input message="tns:transferMoneyRequest"></wsdl:input>
+    	<wsdl:output message="tns:transferMoneyResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAccounts">
+    	<wsdl:input message="tns:getAccountsRequest"></wsdl:input>
+    	<wsdl:output message="tns:getAccountsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTransactionsFrom">
+    	<wsdl:input message="tns:getTransactionsFromRequest"></wsdl:input>
+    	<wsdl:output message="tns:getTransactionsFromResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTransactionsTo">
+    	<wsdl:input message="tns:getTransactionsToRequest"></wsdl:input>
+    	<wsdl:output message="tns:getTransactionsToResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCredits">
+    	<wsdl:input message="tns:getCreditsRequest"></wsdl:input>
+    	<wsdl:output message="tns:getCreditsResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BankSOAP" type="tns:Bank">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://www.example.org/Bank/getUser"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Bank">
+    <wsdl:port binding="tns:BankSOAP" name="BankSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
