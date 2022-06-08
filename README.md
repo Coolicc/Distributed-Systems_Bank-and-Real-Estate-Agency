@@ -1,0 +1,3 @@
+# Distributed Systems: Bank and Real Estate Agency
+
+This is a student project for Distributed Systems course I made at Faculty of Sciences, University of Novi Sad. Implemented in Java, it uses both REST and SOAP APIs. This project has several components: the Bank and the Real Estate Agency at the bottom, where both of them have a SOAP API, and the web app above them that communicates with both of them using the said SOAP APIs and at the same time implements a REST API and provides a website using JSP so that users can browse the offers provided by the real estate agency and pay from the bank all at one place.
